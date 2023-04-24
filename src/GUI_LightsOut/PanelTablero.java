@@ -14,47 +14,36 @@ import uniandes.dpoo.taller4.modelo.Tablero;
 
 public class PanelTablero extends JPanel implements ActionListener {
 	
-	public static void main(String[] args) 
-	{
-		PanelTablero pTablero = new PanelTablero();
-		pTablero.setVisible(true);					
-
-	}
-	
-	//atributos del tablero
 	private Tablero tablero;
-	private JButton[][] botones;
-	private JPanel panelTablero;
-	private JLabel labelJugadas;
-	
-	public void interfaz(int tamanoTablero) 
-	
-	{
-		super ("Tablero");
-		tablero = new Tablero(tamanoTablero);
-		botones = new JButton[tamanoTablero][tamanoTablero];
-		panelTablero = new JPanel(new GridLayout(tamanoTablero,tamanoTablero));
-		crearBotones();
-        crearPanelTablero();
-        setVisible(true);
-    }
-	
-	private void crearBotones() {
-        for (int i = 0; i < botones.length; i++) {
-            for (int j = 0; j < botones[i].length; j++) {
-                botones[i][j] = new JButton();
-                botones[i][j].setBackground(Color.WHITE);            }
-        }
-    }
-	
-	private void crearPanelTablero() {
-        for (int i = 0; i < botones.length; i++) {
-            for (int j = 0; j < botones[i].length; j++) {
-                panelTablero.add(botones[i][j]);
+    private JButton[][] botones;
+    private static int tamano;
+
+    public PanelTablero() {
+        tablero = new Tablero(tamano);
+        botones = new JButton[tamano][tamano];
+        
+        setLayout(new GridLayout(tamano, tamano));
+        
+        for (int row = 0; row < tamano; row++) {
+            for (int col = 0; col < tamano; col++) {
+                JButton boton = new JButton();
+                boton.setBackground(tablero.darTablero()[row][col] ? Color.YELLOW : Color.GRAY);
+                botones[row][col] = boton;
+                add(boton);
             }
         }
     }
+	
+	public static void setTamano(int nuevoTamano) 
+	{
+	    tamano = nuevoTamano;
+	    
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
- 
+	
 }

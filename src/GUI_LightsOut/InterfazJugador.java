@@ -49,11 +49,15 @@ public class InterfazJugador extends JFrame {
 	private void inicializarVentana() 
 	{
 		
+		//declarar tamaño
+		PanelTablero.setTamano(5);
+		
 		// Construir los paneles
 		this.panelOpciones = new PanelOpciones(this);
 		this.panelEditarTablero = new PanelEditarTablero();
 		this.panelRegistro = new PanelRegistro();
 		this.panelTablero = new PanelTablero();
+		
 
 		
 		JPanel panelPrincipal = new JPanel(new BorderLayout());
